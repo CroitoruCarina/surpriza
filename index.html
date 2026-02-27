@@ -103,11 +103,41 @@
 
         /* --- Ajustări pentru telefon --- */
         @media (max-width: 768px) {
-            .photo-group { display: none; } /* Ascundem pozele pe ecrane mici ca să nu acopere textul */
-            .main-wrapper { margin: 0; }
-            .invitation-text { font-size: 3.5rem; }
-            .open-button { font-size: 2.5rem; }
-        }
+            body {
+                flex-direction: column; /* Așează poza sus și textul jos */
+                padding-top: 5vh; 
+            }
+            
+            .photo-group { 
+                display: block; /* Afișăm poza înapoi! */
+                position: relative; /* O punem în linie cu textul, nu "plutind" */
+                top: auto;
+                left: auto;
+                transform: scale(0.7) rotate(-3deg); /* O micșorăm ca să încapă pe ecran */
+                margin-bottom: -30px; /* Tragem textul puțin mai aproape de ea */
+            }
+
+            /* Când pui degetul pe ea pe telefon, se mărește puțin */
+            .photo-group:hover, .photo-group:active {
+                transform: scale(0.8) rotate(0deg);
+            }
+
+            .main-wrapper { 
+                margin: 0; /* Scoatem spațiul lateral */
+                z-index: 10;
+            }
+
+            .invitation-text { 
+                font-size: 3rem; 
+                margin-bottom: 20px;
+            }
+
+            .open-button { 
+                font-size: 2.2rem; 
+                padding: 10px 40px;
+            }
+        }open-button { font-size: 2.5rem; }
+        
     </style>
 
 </head>
