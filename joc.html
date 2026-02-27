@@ -20,6 +20,7 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto;
             text-align: center;
             padding: 20px;
         }
@@ -32,55 +33,49 @@
         }
 
         .instruction-text {
-            color: #ff4d6d;
-            font-size: 2.5rem;
+            color: #d9a4ae;
+            font-size: 3rem;
             margin-bottom: 20px;
         }
 
-        /* --- GRILA PENTRU JOC --- */
         .game-board {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 coloane pe laptop */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 15px;
             margin-bottom: 30px;
-            perspective: 1000px; /* Creează efectul 3D pentru rotație */
+            perspective: 1000px;
         }
 
-        /* --- CARTONAȘELE (CSS 3D MAGIC) --- */
         .card {
             width: 100px;
             height: 100px;
             cursor: pointer;
             position: relative;
-            transform-style: preserve-3d; /* Permite elementelor copii să aibă propriul spațiu 3D */
+            transform-style: preserve-3d; 
             transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
         }
 
-        /* Când adăugăm clasa .flipped din JavaScript, cartonașul se întoarce 180 grade */
         .card.flipped {
             transform: rotateY(180deg);
         }
 
-        /* Fețele cartonașului (ambele ocupă tot spațiul, dar stau spate în spate) */
         .card-face {
             width: 100%;
             height: 100%;
             position: absolute;
             border-radius: 10px;
-            backface-visibility: hidden; /* Ascunde spatele elementului când e întors */
+            backface-visibility: hidden; 
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 8px rgba(255, 77, 109, 0.3);
         }
 
-        /* Fața principală (când e ascunsă poza) */
         .card-front {
-            background: linear-gradient(135deg, #5c3a40, #ff4d6d);
+            background: linear-gradient(135deg, #342124, #3c2a2e);
             font-size: 3rem;
         }
 
-        /* Spatele (poza cu voi) - este deja rotită la 180deg din fabrică */
         .card-back {
             background-color: #fff;
             transform: rotateY(180deg);
@@ -88,12 +83,11 @@
             background-position: center;
         }
 
-        /* --- BUTOANELE --- */
         .locked-button {
             font-family: 'Alex Brush', cursive; 
             background-color: #333; 
             color: #888;
-            border: 2px dashed #555;
+            border: 2px;
             padding: 10px 40px;
             border-radius: 50px;
             font-size: 3rem; 
@@ -114,11 +108,10 @@
 
         @keyframes bataieDeInima {
             0% { transform: scale(1); }
-            50% { transform: scale(1.10); } 
+            50% { transform: scale(1.25); } 
             100% { transform: scale(1); } 
         }
 
-        /* Responsive pentru mobil: facem 2 coloane x 4 rânduri */
         @media (max-width: 600px) {
             .game-board { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .card { width: 90px; height: 90px; }
@@ -128,16 +121,14 @@
 </head>
 <body>
 
-    <h1 class="main-text" id="game-title">Găsește perechile!</h1>
-    <p class="instruction-text">Potrivește imaginile pentru a merge mai departe.</p>
+    <h1 class="main-text" id="game-title">Găsește perechile supriză!</h1>
+    <p class="instruction-text">Trebuie să rezolvi acest joc foarte greu pentru a merge mai departe...</p>
 
     <div class="game-board" id="game-board"></div>
 
-    <button class="locked-button" id="lockedBtn" disabled>🔒 LOCKED: Datele secrete</button>
+    <button class="locked-button" id="lockedBtn" disabled>LOCKED: Confidential!</button>
 
     <script>
-        // 1. Configurarea imaginilor (Numele pozelor tale din folderul imagini)
-        // Avem nevoie de 2 din fiecare pentru a face perechi
         const imagini = [
             'imagini/5.jpg', 'imagini/5.jpg',
             'imagini/6.jpg', 'imagini/6.jpg',
@@ -145,74 +136,60 @@
             'imagini/8.jpg', 'imagini/8.jpg'
         ];
 
-        // 2. Amestecarea imaginilor (Shuffle)
         imagini.sort(() => 0.5 - Math.random());
 
         const board = document.getElementById('game-board');
         let card1 = null;
         let card2 = null;
-        let cardsFlipped = 0; // Câte perechi a găsit
-        let lockBoard = false; // Blochează click-urile cât timp 2 cărți sunt întoarse
+        let cardsFlipped = 0; 
+        let lockBoard = false; 
 
-        // 3. Crearea cartonașelor pe ecran
         imagini.forEach((imgSrc) => {
             const card = document.createElement('div');
             card.classList.add('card');
-            // Stocăm adresa pozei în cartonaș pentru a verifica potrivirea mai târziu
             card.dataset.image = imgSrc; 
 
-            // Structura HTML a cartonașului: Față (inima) și Spate (poza)
             card.innerHTML = `
-                <div class="card-face card-front">❤️</div>
+                <div class="card-face card-front">?</div>
                 <div class="card-face card-back" style="background-image: url('${imgSrc}')"></div>
             `;
 
-            // Adăugăm funcția de click pe fiecare cartonaș
             card.addEventListener('click', flipCard);
             board.appendChild(card);
         });
 
-        // 4. Logica de joc (Ce se întâmplă la click)
         function flipCard() {
-            // Nu permite click dacă placa e blocată sau dacă dă click pe aceeași carte de 2 ori
             if (lockBoard) return;
             if (this === card1) return;
 
             this.classList.add('flipped');
 
-            // Dacă e prima carte întoarsă
             if (!card1) {
                 card1 = this;
                 return;
             }
 
-            // Dacă e a doua carte întoarsă
             card2 = this;
-            lockBoard = true; // Blocăm tabla temporar
+            lockBoard = true;
 
             checkForMatch();
         }
 
-        // 5. Verificarea potrivirii
         function checkForMatch() {
             let isMatch = card1.dataset.image === card2.dataset.image;
 
             if (isMatch) {
-                // Au ghicit perechea!
                 disableCards();
-                cardsFlipped += 2; // Am întors definitiv 2 cărți
+                cardsFlipped += 2;
                 
-                // Verificăm dacă a câștigat (dacă a întors toate cele 8 cărți)
                 if (cardsFlipped === imagini.length) {
                     winGame();
                 }
             } else {
-                // Nu se potrivesc, le întoarcem înapoi după 1 secundă
                 unflipCards();
             }
         }
 
-        // Funcții ajutătoare pentru logica de joc
         function disableCards() {
             card1.removeEventListener('click', flipCard);
             card2.removeEventListener('click', flipCard);
@@ -224,7 +201,7 @@
                 card1.classList.remove('flipped');
                 card2.classList.remove('flipped');
                 resetBoard();
-            }, 1000); // Timpul cât stau întoarse greșit (1 secundă)
+            }, 1000);
         }
 
         function resetBoard() {
@@ -232,20 +209,19 @@
             lockBoard = false;
         }
 
-        // 6. Funcția care se rulează când câștigă
         function winGame() {
             setTimeout(() => {
-                document.getElementById('game-title').innerText = "Memorie excelentă! 🥰";
+                document.getElementById('game-title').innerText = "Știam eu că ești cel mai bun Tudișor!";
                 
                 let lockedBtn = document.getElementById('lockedBtn');
                 lockedBtn.disabled = false;
-                lockedBtn.innerText = "🔓 UNLOCKED: Vezi diploma";
+                lockedBtn.innerText = "UNLOCKED: Vezi premiul!";
                 lockedBtn.classList.add('unlocked-button');
                 
                 lockedBtn.onclick = function() {
                     window.location.href = "diploma.html";
                 };
-            }, 500); // Un mic delay pentru a vedea ultima pereche întoarsă
+            }, 500);
         }
     </script>
 </body>

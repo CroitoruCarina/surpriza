@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misiunea de Sâmbătă</title>
+    <title>întâlnirea de Sâmbătă</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 
@@ -20,9 +20,9 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            padding: 40px 20px; /* Am adăugat un pic de spațiu și sus/jos */
+            padding: 40px 20px;
             position: relative; 
-            /* AM ȘTERS OVERFLOW: HIDDEN DE AICI */
+            overflow-y: auto;
         }
 
         .details-container {
@@ -35,7 +35,7 @@
         }
 
         .mission-title {
-            color: #ff4d6d; 
+            color: #be939b; 
             font-size: 6rem; 
             text-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
             margin-bottom: 20px;
@@ -48,23 +48,35 @@
             line-height: 1.2;
         }
 
-        /* --- LISTA DE ECHIPAMENT --- */
+        .cute-emoji {
+            width: 180px; 
+            margin: 20px 0; 
+            animation: plutire 3s ease-in-out infinite; 
+            filter: drop-shadow(0px 0px 10px rgba(255, 77, 109, 0.3)); 
+        }
+
+        @keyframes plutire {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); } 
+        }
+
         .list-title {
-            color: #ff4d6d;
+            color: #a9a9a9;
             font-size: 4.5rem;
             margin-top: 30px;
             margin-bottom: 15px;
         }
 
         .equipment-list {
-            list-style-type: none; /* Ascunde punctele clasice de listă */
+            list-style-type: none; 
             text-align: left;
             font-size: 3.5rem;
             color: #fae4e8;
-            background-color: rgba(92, 58, 64, 0.3); /* Un fundal ușor vișiniu pentru listă */
+            background-color: rgba(92, 58, 64, 0.3);
             padding: 20px 40px;
             border-radius: 20px;
-            border: 1px solid #5c3a40;
+            border: 1px;
             margin-bottom: 40px;
         }
 
@@ -72,104 +84,38 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 15px; /* Spațiu între emoji și text */
+            gap: 15px;
         }
 
-        /* --- BUTOANELE --- */
-        .buttons-wrapper {
-            display: flex;
-            gap: 30px; /* Spațiu între butoane */
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn-accept {
-            font-family: 'Alex Brush', cursive; 
-            background-color: #5c3a40;
-            color: white;
-            border: 2px solid #fae4e8;
-            padding: 10px 40px;
-            border-radius: 50px;
-            font-size: 3.5rem; 
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(250, 228, 232, 0.4);
-            animation: bataieDeInima 1.5s infinite;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            z-index: 100;
-        }
-
-        .btn-accept:hover {
-            background-color: #643940;
-            transform: scale(1.05); 
-        }
-
-        .btn-refuse {
-            font-family: 'Alex Brush', cursive; 
-            background-color: #333;
-            color: #888;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-size: 2.5rem; 
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 100;
-        }
-
-        /* --- MESAJUL FINAL ASCUNS --- */
-        #final-message {
-            display: none; /* Este ascuns până dă click pe Accept */
-            color: #ff4d6d;
-            font-size: 6rem;
-            margin-top: 30px;
-            text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
-            animation: zoomIn 0.8s ease-out;
-        }
-
-        /* --- ANIMAȚII --- */
-        @keyframes bataieDeInima {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.10); } 
-            100% { transform: scale(1); } 
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* --- AJUSTĂRI PENTRU MOBIL --- */
         @media (max-width: 768px) {
             .mission-title { font-size: 4.5rem; }
             .info-text { font-size: 3rem; }
             .list-title { font-size: 3.5rem; }
             .equipment-list { font-size: 2.5rem; padding: 15px 20px; }
-            .btn-accept { font-size: 2.5rem; padding: 10px 25px; }
-            .btn-refuse { font-size: 2rem; }
-            #final-message { font-size: 4rem; }
-            .buttons-wrapper { flex-direction: column; gap: 15px; } /* Butoanele stau unul sub altul pe telefon */
         }
     </style>
 </head>
 <body>
 
     <div class="details-container">
-        <h1 class="mission-title">Misiunea Secretă</h1>
+        <h1 class="mission-title">Datele oficiale ale întâlnirii noastre!</h1>
         
-        <p class="info-text">📅 <strong>Ziua:</strong> Sâmbătă</p>
-        <p class="info-text">⏰ <strong>Ora:</strong> 17:00</p>
+        <p class="info-text"><strong>Ziua:</strong> Sâmbătă - 28.02.2026</p>
+        <p class="info-text"><strong>Ora:</strong> 17:00</p>
+        <p class="info-text"><strong>Te Iubesc Cel Mai Mult!!</strong></p>
+
+        <img src="imagini/11.png" alt="pusi" class="cute-emoji">
         
-        <h2 class="list-title">Echipament necesar:</h2>
+        <h2 class="list-title">Ce trebuie să aduci cu tine:</h2>
         <ul class="equipment-list">
-            <li>🥾 Bocanci comozi</li>
-            <li>🔦 O lanternă</li>
-            <li>❤️ Multă voie bună</li>
+            <li>1. Pe tine! hahahahahahahhahahaha</li>
+            <li>2. Bocancii tăi, acum curați, LaSportiva!</li>
+            <li>3. O lanternă, sau două, hihihihihi</li>
+            <li>4. Și din nou, pe tine!!!</li>
         </ul>
 
-        <div class="buttons-wrapper" id="
+
+    </div>
+
+</body>
+</html>
