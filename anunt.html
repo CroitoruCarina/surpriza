@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalii Surpriză</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Alex Brush', cursive; 
+            background-color: rgb(0, 0, 0); 
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Containerul pentru text, cu efect de fade-in */
+        .message-container {
+            max-width: 800px;
+            z-index: 10;
+            animation: fadeIn 2s ease-in-out; /* Animația de apariție lentă */
+        }
+
+        .main-text {
+            color: #fae4e8; /* Rozul pal */
+            font-size: 4.5rem; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .highlight-text {
+            color: #ff4d6d; /* Roz mai aprins pentru contrast */
+            font-size: 5.5rem;
+            margin: 30px 0;
+            text-shadow: 0 0 15px rgba(255, 77, 109, 0.4); /* O mică strălucire */
+        }
+
+        .cute-emoji {
+            width: 180px; /* Cât de mare să fie emoji-ul */
+            margin: 20px 0; /* Spațiu sus și jos */
+            animation: plutire 3s ease-in-out infinite; /* Îl facem să plutească ușor */
+            filter: drop-shadow(0px 0px 10px rgba(255, 77, 109, 0.3)); /* O umbră fină roz */
+        }
+
+        @keyframes plutire {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); } /* Se ridică 15px */
+            100% { transform: translateY(0px); } /* Revine la loc */
+        }
+
+        /* Același buton cu bătăi de inimă */
+        .next-button {
+            font-family: 'Alex Brush', cursive; 
+            background-color: #5c3a40;
+            color: white;
+            border: none;
+            padding: 10px 50px;
+            border-radius: 70px;
+            font-size: 3.5rem; 
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            animation: bataieDeInima 1.5s infinite;
+            margin-top: 40px;
+        }
+
+        .next-button:hover {
+            background-color: #643940;
+            transform: scale(1.05); 
+        }
+
+        /* Animația pentru buton */
+        @keyframes bataieDeInima {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.10); } 
+            100% { transform: scale(1); } 
+        }
+
+        /* Animația de apariție a întregului text */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ajustări pentru telefon */
+        @media (max-width: 768px) {
+            .main-text { font-size: 3rem; }
+            .highlight-text { font-size: 4rem; margin: 20px 0; }
+            .cute-emoji { width: 140px; } /* Îl facem un pic mai mic pe telefon */
+            .next-button { font-size: 2.5rem; padding: 10px 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message-container">
+        <p class="main-text">Te anunț cu această ocazie că eu, în calitate de iubita ta, ți-am pregătit o ieșire surpriză!</p>
+        
+        <h2 class="highlight-text">Când și unde?</h2>
+
+        <img src="imagini/4.PNG" alt="Ochișori dulci" class="cute-emoji">
+        
+        <p class="main-text">Vei afla imediat...</p>
+        
+        <a href="joc.html"><button class="next-button">Treci mai departe</button></a>
+    </div>
+
+</body>
+</html>

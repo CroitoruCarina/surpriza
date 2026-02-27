@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitatie Surpriza</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Alex Brush', cursive; 
+            background-color: rgb(0, 0, 0); 
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative; 
+        }
+
+        /* --- CONTAINERUL PENTRU POZĂ + INIMĂ + STEA --- */
+        .photo-group {
+            position: absolute;
+            top: 8%; /* Distanța de sus */
+            left: 8%; /* Distanța din stânga */
+            z-index: 5;
+            transform: rotate(-5deg); /* O înclinăm puțin ca să pară naturală */
+            transition: all 0.4s ease; /* Animație la hover */
+        }
+
+        /* --- Setări pentru poza principală (1.PNG) --- */
+        .polaroid-img {
+            width: 350px; /* Aici decizi cât de mare să fie polaroidul */
+            display: block;
+            filter: drop-shadow(2px 4px 15px rgba(0, 0, 0, 0.8)); /* O mică umbră ca să pară 3D */
+        }
+
+        /* --- Setări pentru elementele decorative --- */
+        .decor {
+            position: absolute;
+            z-index: 10; /* Le pune DEASUPRA pozei */
+        }
+
+        .heart {
+            width: 80px; /* Dimensiunea inimii */
+            top: -20px; /* O ridicăm un pic peste marginea pozei */
+            right: -20px; /* O scoatem un pic în afara pozei, în dreapta */
+            transform: rotate(15deg);
+        }
+
+        .star {
+            width: 90px; /* Dimensiunea stelei */
+            top: 60px; /* O punem sub inimă */
+            right: -30px; /* O scoatem puțin mai mult în dreapta */
+            transform: rotate(-10deg);
+        }
+
+        /* --- Setări Text & Buton (Astea au rămas ca ale tale) --- */
+        .main-wrapper {
+            text-align: center;
+            padding: 20px;
+            z-index: 10; 
+            /* Împingem textul un pic spre dreapta/jos ca să nu se încâlece cu poza dacă ecranul e mai mic */
+            margin-top: 15vh; 
+            margin-left: 10vw; 
+        }
+
+        .invitation-text {
+            color: #fae4e8;
+            font-size: 5rem; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .open-button {
+            font-family: 'Alex Brush', cursive; 
+            background-color: #5c3a40;
+            color: white;
+            border: none;
+            padding: 10px 60px;
+            border-radius: 70px;
+            font-size: 4rem; 
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            animation: bataieDeInima 1.5s infinite;
+        }
+
+        .open-button:hover {
+            background-color: #643940;
+            transform: scale(1.05); 
+        }
+
+        @keyframes bataieDeInima {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); } 
+            100% { transform: scale(1); } 
+        }
+
+        /* --- Ajustări pentru telefon --- */
+        @media (max-width: 768px) {
+            .photo-group { display: none; } /* Ascundem pozele pe ecrane mici ca să nu acopere textul */
+            .main-wrapper { margin: 0; }
+            .invitation-text { font-size: 3.5rem; }
+            .open-button { font-size: 2.5rem; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="photo-group">
+        <img src="imagini/1.PNG" class="polaroid-img" alt="Poza noastra">
+        <img src="imagini/2.PNG" class="decor heart" alt="Inimioara">
+        <img src="imagini/3.PNG" class="decor star" alt="Stea">
+    </div>
+
+    <div class="main-wrapper">
+        <h1 class="invitation-text">Invitație surpriză pentru iubitul meu!</h1>
+        <a href="anunt.html"><button class="open-button">Open me!</button></a>
+    </div>
+
+</body>
+</html>
