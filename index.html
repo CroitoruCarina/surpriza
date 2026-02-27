@@ -18,59 +18,53 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative; 
         }
 
-        /* --- CONTAINERUL PENTRU POZĂ + INIMĂ + STEA --- */
         .photo-group {
             position: absolute;
-            top: 8%; /* Distanța de sus */
-            left: 8%; /* Distanța din stânga */
+            top: 8%; 
+            left: 8%; 
             z-index: 5;
-            transform: rotate(-5deg); /* O înclinăm puțin ca să pară naturală */
-            transition: all 0.4s ease; /* Animație la hover */
+            transform: rotate(-5deg); 
+            transition: all 0.4s ease; 
         }
 
-        /* --- Setări pentru poza principală (1.PNG) --- */
         .polaroid-img {
-            width: 350px; /* Aici decizi cât de mare să fie polaroidul */
+            width: 250px; 
             display: block;
-            filter: drop-shadow(2px 4px 15px rgba(0, 0, 0, 0.8)); /* O mică umbră ca să pară 3D */
+            filter: drop-shadow(2px 4px 15px rgba(0, 0, 0, 0.8)); 
         }
 
-        /* --- Setări pentru elementele decorative --- */
         .decor {
             position: absolute;
-            z-index: 10; /* Le pune DEASUPRA pozei */
+            z-index: 10;
         }
 
         .heart {
-            width: 80px; /* Dimensiunea inimii */
-            top: -20px; /* O ridicăm un pic peste marginea pozei */
-            right: -20px; /* O scoatem un pic în afara pozei, în dreapta */
+            width: 100px; 
+            top: -20px; 
+            right: -20px; 
             transform: rotate(15deg);
         }
 
         .star {
-            width: 90px; /* Dimensiunea stelei */
-            top: 60px; /* O punem sub inimă */
-            right: -30px; /* O scoatem puțin mai mult în dreapta */
+            width: 80px; 
+            top: 70px; 
+            right: -40px; 
             transform: rotate(-10deg);
         }
 
-        /* --- Setări Text & Buton (Astea au rămas ca ale tale) --- */
         .main-wrapper {
             text-align: center;
             padding: 20px;
             z-index: 10; 
-            /* Împingem textul un pic spre dreapta/jos ca să nu se încâlece cu poza dacă ecranul e mai mic */
-            margin-top: 15vh; 
-            margin-left: 10vw; 
         }
 
         .invitation-text {
-            color: #fae4e8;
+            color: #fad3da;
             font-size: 5rem; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             line-height: 1.5;
@@ -97,33 +91,31 @@
 
         @keyframes bataieDeInima {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); } 
+            50% { transform: scale(1.25); } 
             100% { transform: scale(1); } 
         }
 
-        /* --- Ajustări pentru telefon --- */
         @media (max-width: 768px) {
             body {
-                flex-direction: column; /* Așează poza sus și textul jos */
+                flex-direction: column; 
                 padding-top: 5vh; 
             }
             
             .photo-group { 
-                display: block; /* Afișăm poza înapoi! */
-                position: relative; /* O punem în linie cu textul, nu "plutind" */
+                display: block; 
+                position: relative; 
                 top: auto;
                 left: auto;
-                transform: scale(0.7) rotate(-3deg); /* O micșorăm ca să încapă pe ecran */
-                margin-bottom: -30px; /* Tragem textul puțin mai aproape de ea */
+                transform: scale(0.7) rotate(-3deg); 
+                margin-bottom: -30px; 
             }
 
-            /* Când pui degetul pe ea pe telefon, se mărește puțin */
             .photo-group:hover, .photo-group:active {
                 transform: scale(0.8) rotate(0deg);
             }
 
             .main-wrapper { 
-                margin: 0; /* Scoatem spațiul lateral */
+                margin: 0; 
                 z-index: 10;
             }
 
@@ -144,7 +136,7 @@
 <body>
 
     <div class="photo-group">
-        <img src="imagini/1.PNG" class="polaroid-img" alt="Poza noastra">
+        <img src="imagini/1.PNG" class="polaroid-img" alt="Poza cu maimuta">
         <img src="imagini/2.PNG" class="decor heart" alt="Inimioara">
         <img src="imagini/3.PNG" class="decor star" alt="Stea">
     </div>
